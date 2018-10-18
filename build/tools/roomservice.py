@@ -2,6 +2,7 @@
 # Copyright (C) 2012-2013, The CyanogenMod Project
 #           (C) 2017,      The LineageOS Project
 #           (C) 2017,      The LiquidRemix Project
+#           (C) 2018,      The VenomRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -194,7 +195,7 @@ def add_to_manifest(repositories, fallback_branch = None):
 
 def fetch_dependencies(repo_path, fallback_branch = None):
     print('Looking for dependencies in %s' % repo_path)
-    dependencies_path = repo_path + '/liquid.dependencies'
+    dependencies_path = repo_path + '/venom.dependencies'
     syncable_repos = []
     verify_repos = []
 
