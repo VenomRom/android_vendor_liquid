@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= LiquidRemix
+PRODUCT_BRAND ?=VenomRom
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -62,12 +62,12 @@ endif
 # LatineIME Gesture swyping
 ifneq ($(filter shamu,$(TARGET_PRODUCT)),)
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
-    vendor/liquid/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
+    vendor/venom/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
+    vendor/venom/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
 else
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so \
-    vendor/liquid/prebuilt/common/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so
+    vendor/venom/prebuilt/common/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so \
+    vendor/venom/prebuilt/common/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so
 endif
 
 # Themes
@@ -119,43 +119,43 @@ PRODUCT_PACKAGES += \
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/liquid/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/liquid/prebuilt/common/bin/50-liquid.sh:system/addon.d/50-liquid.sh \
-    vendor/liquid/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/venom/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/venom/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/venom/prebuilt/common/bin/50-liquid.sh:system/addon.d/50-liquid.sh \
+    vendor/venom/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
-    vendor/liquid/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/liquid/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+    vendor/venom/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
+    vendor/venom/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
+    vendor/venom/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
 endif
 
 # Backup services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/liquid/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/venom/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/venom/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/venom/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
 # LiquidRemix specific init file
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/init.local.rc:root/init.liquid.rc
+    vendor/venom/prebuilt/common/etc/init.local.rc:root/init.venom.rc
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/venom/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Google Dialer
 PRODUCT_COPY_FILES +=  \
-    vendor/liquid/prebuilt/common/etc/sysconfig/dialer_experience.xml:system/etc/sysconfig/dialer_experience.xml 
+    vendor/venom/prebuilt/common/etc/sysconfig/dialer_experience.xml:system/etc/sysconfig/dialer_experience.xml 
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -167,15 +167,15 @@ PRODUCT_COPY_FILES += \
 
 # Include LiquidRemix boot animation
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/media/bootanimation.zip:system/media/bootanimation.zip
+    vendor/venom/prebuilt/common/media/bootanimation.zip:system/media/bootanimation.zip
 
 # AR
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/calibration_cad.xml:system/etc/calibration_cad.xml
+    vendor/venom/prebuilt/common/etc/calibration_cad.xml:system/etc/calibration_cad.xml
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include vendor/liquid/config/twrp.mk
+include vendor/venom/config/twrp.mk
 endif
 
 # Required packages
@@ -184,11 +184,6 @@ PRODUCT_PACKAGES += \
     Email \
     Jelly \
     Launcher3
-
-# Liquid packages
-PRODUCT_PACKAGES += \
-    LiquidLounge \
-    LiquidOTA
 
 # Optional packages
 PRODUCT_PACKAGES += \
@@ -235,11 +230,11 @@ PRODUCT_PACKAGES += \
 endif
 
 # Prebuilt Apps
-$(call inherit-product-if-exists, vendor/liquid/prebuilt/common/prebuilt.mk)
+$(call inherit-product-if-exists, vendor/venom/prebuilt/common/prebuilt.mk)
 
 # Vendor Overlays
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/liquid/overlay
-DEVICE_PACKAGE_OVERLAYS += vendor/liquid/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/venom/overlay
+DEVICE_PACKAGE_OVERLAYS += vendor/venom/overlay/common
 
 # Version System
 PRODUCT_VERSION_MAJOR = 1
@@ -247,106 +242,106 @@ PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 
 
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    LIQUID_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+    VENOM_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    LIQUID_VERSION_MAINTENANCE := 
+    VENOM_VERSION_MAINTENANCE := 
 endif
 
-# Set LIQUID_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set VENOM_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
-ifndef LIQUID_BUILDTYPE
+ifndef VENOM_BUILDTYPE
     ifdef RELEASE_TYPE
         # Starting with "LIQUID_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^LIQUID_||g')
-        LIQUID_BUILDTYPE := $(RELEASE_TYPE)
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^VENOM_||g')
+        VENOM_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
 ifeq ($(filter RELEASE SNAPSHOT EXPERIMENTAL WEEKLY FINAL,$(LIQUID_BUILDTYPE)),)
-    LIQUID_BUILDTYPE :=
+    VENOM_BUILDTYPE :=
 endif
 
-ifdef LIQUID_BUILDTYPE
-    ifneq ($(LIQUID_BUILDTYPE), SNAPSHOT)
-        ifdef LIQUID_EXTRAVERSION
+ifdef VENOM_BUILDTYPE
+    ifneq ($(VENOM_BUILDTYPE), SNAPSHOT)
+        ifdef VENOM_EXTRAVERSION
             # Force build type to EXPERIMENTAL
-            LIQUID_BUILDTYPE := EXPERIMENTAL
+            VENOM_BUILDTYPE := EXPERIMENTAL
             # Force build type to WEEKLY
-            LIQUID_BUILDTYPE := WEEKLY
+            VENOM_BUILDTYPE := WEEKLY
             # Force build type to FINAL
-            LIQUID_BUILDTYPE := FINAL
-            # Remove leading dash from LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := $(shell echo $(LIQUID_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := -$(LIQUID_EXTRAVERSION)
+            VENOM_BUILDTYPE := FINAL
+            # Remove leading dash from VENOM_EXTRAVERSION
+            VENOM_EXTRAVERSION := $(shell echo $(VENOM_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to VENOM_EXTRAVERSION
+            VENOM_EXTRAVERSION := -$(VENOM_EXTRAVERSION)
         endif
     else
-        ifndef LIQUID_EXTRAVERSION
+        ifndef VENOM_EXTRAVERSION
             # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            LIQUID_BUILDTYPE := EXPERIMENTAL
+            VENOM_BUILDTYPE := EXPERIMENTAL
             # Force build type to WEEKLY, SNAPSHOT mandates a tag
-            LIQUID_BUILDTYPE := WEEKLY
+            VENOM_BUILDTYPE := WEEKLY
             # Force build type to FINAL, SNAPSHOT mandates a tag
             LIQUID_BUILDTYPE := FINAL
         else
-            # Remove leading dash from LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := $(shell echo $(LIQUID_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := -$(LIQUID_EXTRAVERSION)
+            # Remove leading dash from VENOM_EXTRAVERSION
+            VENOM_EXTRAVERSION := $(shell echo $(VENOM_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to VENOM_EXTRAVERSION
+            VENOM_EXTRAVERSION := -$(VENOM_EXTRAVERSION)
         endif
     endif
 else
-    # If LIQUID_BUILDTYPE is not defined, set to UNOFFICIAL
-    LIQUID_BUILDTYPE := UNOFFICIAL
-    LIQUID_EXTRAVERSION := 
+    # If VENOM_BUILDTYPE is not defined, set to UNOFFICIAL
+    VENOM_BUILDTYPE := UNOFFICIAL
+    VENOM_EXTRAVERSION := 
 endif
 
-ifeq ($(LIQUID_BUILDTYPE), UNOFFICIAL)
+ifeq ($(VENOM_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        LIQUID_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        VENOM_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-ifeq ($(LIQUID_BUILDTYPE), RELEASE)
+ifeq ($(VENOM_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-OFFICIAL-$(LIQUID_BUILD)
+        VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-OFFICIAL-$(VENOM_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            ifeq ($(LIQUID_VERSION_MAINTENANCE),0)
-                LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(LIQUID_BUILD)
+            ifeq ($(VENOM_VERSION_MAINTENANCE),0)
+                VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(VENOM_BUILD)
             else
-                LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(LIQUID_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(LIQUID_BUILD)
+                VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(VENOM_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(VENOMDBUILD)
             endif
         else
-            LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(LIQUID_BUILD)
+            VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(VENOM_BUILD)
         endif
     endif
 else
-    ifeq ($(LIQUID_VERSION_MAINTENANCE),0)
-        LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(LIQUID_BUILDTYPE)$(LIQUID_EXTRAVERSION)-$(LIQUID_BUILD)
+    ifeq ($(VENOM_VERSION_MAINTENANCE),0)
+        VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(VENOM_BUILDTYPE)$(VENOM_EXTRAVERSION)-$(VENOM_BUILD)
     else
-        LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(LIQUID_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(LIQUID_BUILDTYPE)$(LIQUID_EXTRAVERSION)-$(LIQUID_BUILD)
+        VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(VENOM_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(VENOM_BUILDTYPE)$(VENOM_EXTRAVERSION)-$(LVENOM_BUILD)
     endif
 endif
 
-TARGET_PRODUCT_SHORT := $(subst liquid_,,$(LIQUID_BUILDTYPE))
+TARGET_PRODUCT_SHORT := $(subst venom_,,$(VENOM_BUILDTYPE))
 
-ROM_FINGERPRINT := LiquidRemix/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(shell date +%Y%m%d)
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.liquid.version=$(LIQUID_VERSION) \
-    ro.liquid.releasetype=$(LIQUID_BUILDTYPE) \
-    ro.liquid.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.modversion=$(LIQUID_VERSION) \
-    ro.liquid.fingerprint=$(ROM_FINGERPRINT)
-
-LIQUID_DISPLAY_VERSION := $(LIQUID_VERSION)
+ROM_FINGERPRINT := VenomRom/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(shell date +%Y%m%d)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.liquid.display.version=$(LIQUID_DISPLAY_VERSION)
+    ro.venom.version=$(VENOM_VERSION) \
+    ro.venom.releasetype=$(VENOM_BUILDTYPE) \
+    ro.venom.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.modversion=$(VENOM_VERSION) \
+    ro.venom.fingerprint=$(ROM_FINGERPRINT)
+
+VENOM_DISPLAY_VERSION := $(VENOMVERSION)
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.venom.display.version=$(VENOM_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/liquid/config/partner_gms.mk
+-include vendor/venom/config/partner_gms.mk
 
 $(call inherit-product-if-exists, vendor/extra/product.mk)

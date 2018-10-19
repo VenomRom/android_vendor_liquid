@@ -4,7 +4,7 @@ SELINUX_IGNORE_NEVERALLOWS := true
 endif
 
 # Rules for MTK targets
-include $(TOPDIR)vendor/liquid/build/core/mtk_target.mk
+include $(TOPDIR)vendor/venom/build/core/mtk_target.mk
 
 # Rules for QCOM targets
-include $(TOPDIR)vendor/liquid/build/core/qcom_target.mk
+include $(TOPDIR)vendor/venom/build/core/qcom_target.mk

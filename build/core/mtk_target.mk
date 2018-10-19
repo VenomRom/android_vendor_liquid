@@ -1,2 +1,2 @@
 # Bring in Mediatek helper macros
-include vendor/liquid/build/core/mtk_utils.mk
+include vendor/venom/build/core/mtk_utils.mk

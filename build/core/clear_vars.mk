@@ -1,5 +1,5 @@
 #
-# LiquidRemix-specific variable clears
+# VenomRom-specific variable clears
 #
 LOCAL_IGNORE_SUBDIR :=
 
