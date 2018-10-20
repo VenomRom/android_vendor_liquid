@@ -1,8 +1,8 @@
 # Inherit full common LiquidRemix stuff
-$(call inherit-product, vendor/liquid/config/common_full.mk)
+$(call inherit-product, vendor/venom/config/common_full.mk)
 
 # Required packages
 PRODUCT_PACKAGES += \
     LatinIME
 
-$(call inherit-product, vendor/liquid/config/telephony.mk)
+$(call inherit-product, vendor/venom/config/telephony.mk)
