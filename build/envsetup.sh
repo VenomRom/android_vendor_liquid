@@ -1,4 +1,4 @@
-function __print_liquid_functions_help() {
+function __print_venom_functions_help() {
 cat <<EOF
 Additional LiquidRemix functions:
 - cout:            Changes directory to out.
@@ -47,7 +47,7 @@ function brunch()
 {
     breakfast $*
     if [ $? -eq 0 ]; then
-        mka liquid
+        mka  venom
     else
         echo "No such item in brunch menu. Try 'breakfast'"
         return 1
@@ -59,10 +59,10 @@ function breakfast()
 {
     target=$1
     local variant=$2
-    LIQUID_DEVICES_ONLY="true"
+    VENOM_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/liquid/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/venom/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -78,12 +78,12 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the LiquidRemix model name
+            # This is probably just the VenomRom model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
 
-            lunch liquid_$target-$variant
+            lunch venom_$target-$variant
         fi
     fi
     return $?
@@ -239,13 +239,13 @@ function _adb_connected {
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/liquid/build/tools/repopick.py $@
+    $T/vendor/venom/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
-    if [ ! -z $LIQUID_FIXUP_COMMON_OUT ]; then
+    if [ ! -z $VENOM_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
             ln -s ${common_out_dir}-${target_device} ${common_out_dir}
@@ -270,7 +270,7 @@ if [ -d $(gettop)/prebuilts/snapdragon-llvm/toolchains ]; then
             export SDCLANG=true
             export SDCLANG_PATH=$(gettop)/prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin
             export SDCLANG_PATH_2=$(gettop)/prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin
-            export SDCLANG_LTO_DEFS=$(gettop)/vendor/liquid/build/core/sdllvm-lto-defs.mk
+            export SDCLANG_LTO_DEFS=$(gettop)/vendor/venom/build/core/sdllvm-lto-defs.mk
             ;;
     esac
 fi
