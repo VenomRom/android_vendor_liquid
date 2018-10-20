@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?=VenomRom
+\PRODUCT_BRAND ?=VenomRom
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -258,7 +258,7 @@ ifndef VENOM_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE SNAPSHOT EXPERIMENTAL WEEKLY FINAL,$(LIQUID_BUILDTYPE)),)
+ifeq ($(filter RELEASE SNAPSHOT EXPERIMENTAL WEEKLY FINAL,$(VENOM_BUILDTYPE)),)
     VENOM_BUILDTYPE :=
 endif
 
@@ -283,7 +283,7 @@ ifdef VENOM_BUILDTYPE
             # Force build type to WEEKLY, SNAPSHOT mandates a tag
             VENOM_BUILDTYPE := WEEKLY
             # Force build type to FINAL, SNAPSHOT mandates a tag
-            LIQUID_BUILDTYPE := FINAL
+            VENOM_BUILDTYPE := FINAL
         else
             # Remove leading dash from VENOM_EXTRAVERSION
             VENOM_EXTRAVERSION := $(shell echo $(VENOM_EXTRAVERSION) | sed 's/-//')
@@ -321,7 +321,7 @@ else
     ifeq ($(VENOM_VERSION_MAINTENANCE),0)
         VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(VENOM_BUILDTYPE)$(VENOM_EXTRAVERSION)-$(VENOM_BUILD)
     else
-        VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(VENOM_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(VENOM_BUILDTYPE)$(VENOM_EXTRAVERSION)-$(LVENOM_BUILD)
+        VENOM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(VENOM_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(VENOM_BUILDTYPE)$(VENOM_EXTRAVERSION)-$(VENOM_BUILD)
     endif
 endif
 

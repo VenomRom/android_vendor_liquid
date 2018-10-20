@@ -1,4 +1,4 @@
-# Inherit common LiquidRemix stuff
-$(call inherit-product, vendor/liquid/config/common.mk)
+# Inherit common VenoRom stuff
+$(call inherit-product, vendor/venom/config/common.mk)
 
 PRODUCT_SIZE := full
